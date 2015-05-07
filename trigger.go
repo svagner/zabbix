@@ -9,8 +9,6 @@ type (
 	TriggerType  int
         FlagsType    int
         PriorityType int
-        StatusType   int
-        ValueType    int
         ValueFlagsType int
 )
 
@@ -58,14 +56,14 @@ type Trigger struct {
 type Triggers []Trigger
 
 // Converts slice to map by key. Panics if there are duplicate keys.
-func (triggers Triggers) ByKey() (res map[string]Trigger) {
+func (triggers Triggers) ById() (res map[string]Trigger) {
 	res = make(map[string]Trigger, len(triggers))
 	for _, i := range triggers {
-		_, present := res[i.Key]
+		_, present := res[i.TriggerId]
 		if present {
-			panic(fmt.Errorf("Duplicate key %s", i.Key))
+			panic(fmt.Errorf("Duplicate key %s", i.TriggerId))
 		}
-		res[i.Key] = i
+		res[i.TriggerId] = i
 	}
 	return
 }
