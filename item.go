@@ -105,9 +105,7 @@ func (api *API) ItemExists(params Params) (res bool, err error) {
 		return
 	}
 
-	result := response.Result.(map[string]interface{})
-        exists := result["result"].(interface{})
-	res = exists.(bool)
+	res = response.Result.(bool)
         return
 }
 
