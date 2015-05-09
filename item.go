@@ -98,6 +98,19 @@ func (api *API) ItemsGet(params Params) (res Items, err error) {
 	return
 }
 
+// Wrapper for item.get https://www.zabbix.com/documentation/2.0/manual/appendix/api/item/exists
+func (api *API) ItemExists(params Params) (res bool, err error) {
+	response, err := api.CallWithError("item.exists", params)
+	if err != nil {
+		return
+	}
+
+	result := response.Result.(map[string]interface{})
+        exists := result["result"].(interface{})
+	res = exists.(bool)
+        return
+}
+
 // Gets items by application Id.
 func (api *API) ItemsGetByApplicationId(id string) (res Items, err error) {
 	return api.ItemsGet(Params{"applicationids": id})
