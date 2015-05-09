@@ -46,7 +46,7 @@ type Trigger struct {
         Flags       int         `json:"flags"`
         Priority        int   `json:"priority"`
         Status          int   `json:"status"`
-        TemplateId  string    `json:"templateid"`
+//        TemplateId  string    `json:"templateid"`
         Type            TriggerType `json:"type"`
         Url         string    `json:"url"`
         Value           int   `json:"value"`
