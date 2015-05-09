@@ -53,7 +53,7 @@ type Trigger struct {
         ValueFlags      int     `json:"value_flags"`
 }
 
-type TriggerPrototipe struct {
+type TriggerPrototype struct {
 	TriggerId      string    `json:"trigerid,omitempty"`
 	Description string    `json:"description"`
 	Expression string    `json:"expression"`
@@ -66,7 +66,7 @@ type TriggerPrototipe struct {
 }
 
 type Triggers []Trigger
-type TriggerPrototipes []TriggerPrototipe
+type TriggerPrototypes []TriggerPrototype
 
 // Converts slice to map by key. Panics if there are duplicate keys.
 func (triggers Triggers) ById() (res map[string]Trigger) {
@@ -96,7 +96,7 @@ func (api *API) TriggerGet(params Params) (res Triggers, err error) {
 }
 
 // Wrapper for trigger.create: https://www.zabbix.com/documentation/2.0/manual/appendix/api/trigger/create
-func (api *API) TriggersCreate(triggers TriggerPrototipes) (err error) {
+func (api *API) TriggersCreate(triggers TriggerPrototypes) (err error) {
 	response, err := api.CallWithError("trigger.create", triggers)
 	if err != nil {
 		return
