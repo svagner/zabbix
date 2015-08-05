@@ -52,6 +52,11 @@ func (api *API) HostsGetByHostGroupIds(ids []string) (res Hosts, err error) {
 	return api.HostsGet(Params{"groupids": ids})
 }
 
+// Gets all monitored hosts.
+func (api *API) HostsGetMonitored() (res Hosts, err error) {
+	return api.HostsGet(Params{"output": "extend", "filter": Params{"monitored_hosts": "true"}})
+}
+
 // Gets hosts by host groups.
 func (api *API) HostsGetByHostGroups(hostGroups HostGroups) (res Hosts, err error) {
 	ids := make([]string, len(hostGroups))

@@ -38,7 +38,7 @@ const (
 
 // https://www.zabbix.com/documentation/2.0/manual/appendix/api/item/definitions
 type Trigger struct {
-	TriggerId      string    `json:"trigerid,omitempty"`
+	TriggerId      string    `json:"triggerid,omitempty"`
 	Description string    `json:"description"`
 	Expression string    `json:"expression"`
 	Comments string    `json:"comments"`
@@ -54,7 +54,7 @@ type Trigger struct {
 }
 
 type TriggerPrototype struct {
-	TriggerId      string    `json:"trigerid,omitempty"`
+	TriggerId      string    `json:"triggerid,omitempty"`
 	Description string    `json:"description"`
 	Expression string    `json:"expression"`
 	Comments string    `json:"comments"`

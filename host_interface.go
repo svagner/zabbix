@@ -1,5 +1,9 @@
 package zabbix
 
+import (
+	"github.com/AlekSi/reflector"
+)
+
 type (
 	InterfaceType int
 )
@@ -22,3 +26,22 @@ type HostInterface struct {
 }
 
 type HostInterfaces []HostInterface
+
+// Wrapper for host.get: https://www.zabbix.com/documentation/2.0/manual/appendix/api/hostinterface/get
+func (api *API) HostsInterfaceGet(params Params) (res HostInterfaces, err error) {
+	if _, present := params["output"]; !present {
+		params["output"] = "extend"
+	}
+	response, err := api.CallWithError("hostinterface.get", params)
+	if err != nil {
+		return
+	}
+
+	reflector.MapsToStructs2(response.Result.([]interface{}), &res, reflector.Strconv, "json")
+	return
+}
+
+// Gets host interface by host Id.
+func (api *API) HostsInterfacesGetByIds(ids []string) (res HostInterfaces, err error) {
+	return api.HostsInterfaceGet(Params{"hostids": ids})
+}
