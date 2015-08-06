@@ -17,12 +17,14 @@ const (
 
 // https://www.zabbix.com/documentation/2.0/manual/appendix/api/hostinterface/definitions
 type HostInterface struct {
-	DNS   string        `json:"dns"`
-	IP    string        `json:"ip"`
-	Main  int           `json:"main"`
-	Port  string        `json:"port"`
-	Type  InterfaceType `json:"type"`
-	UseIP int           `json:"useip"`
+	DNS    string        `json:"dns"`
+	IP     string        `json:"ip"`
+	Main   int           `json:"main"`
+	Port   string        `json:"port"`
+	Type   InterfaceType `json:"type"`
+	UseIP  int           `json:"useip"`
+	HostId string        `json:"hostid"`
+	Id     string        `json:"interfaceid"`
 }
 
 type HostInterfaces []HostInterface
